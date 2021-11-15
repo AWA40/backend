@@ -2,9 +2,7 @@ package com.example.foodorderingapplication;
 
 public class RestaurantManager {
 
-    private String name;
-    private String username;
-    private String password;
+    private String name, username, password;
     private Role role;
 
     public RestaurantManager(String name, String username, String password, Role role) {
