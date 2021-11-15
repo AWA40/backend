@@ -1,2 +1,2 @@
 # backend
-Repository for our project's backend systems with Java/Spring.
+Repository for our project's backend system. Made with Java/Spring.
