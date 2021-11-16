@@ -1,10 +1,13 @@
 package com.example.foodorderingapplication;
 
+import java.util.List;
+
 public class Restaurant {
 
     private String restaurantName, address;
     private long operatingHours;
     private Type type;
+    private List<Product> menu;
 
     public Restaurant(String restaurantName, String address, long operatingHours, Type type){
 
@@ -53,6 +56,16 @@ public class Restaurant {
     public void setType(Type type)
     {
         this.type = type;
+    }
+    
+    public List<Product> getMenu()
+    {
+        return menu;
+    }
+
+    public void setMenu(List<Product> menu)
+    {
+        this.menu = menu;
     }
     
 }
