@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 // Rest Controller tästä
-// Autowiretä MyControllerin kanssa
 
 @RestController
 @RequestMapping("/app")
@@ -112,5 +111,35 @@ public class RController {
     @DeleteMapping("/deleteProduct/{id}")
     public ResponseEntity<Product> delete(@PathVariable Long productId){
         return controller.deleteProduct(productId);
+    }//----------------------------------------------------------
+    // Restaurant:
+    @GetMapping("/getRestaurant")
+    public List<Restaurant> RestaurantList(){
+        return controller.listRestaurants();
+    }
+
+    @GetMapping("/getRestaurant/{id}")
+    public Restaurant getRestaurant(@PathVariable Long restaurantId){
+        return controller.findRestaurantById(restaurantId);
+    }
+
+    @GetMapping("/getRestaurant/{name}")
+    public Restaurant getRestaurant(@PathVariable String restaurantName){
+        return controller.findRestaurantByName(restaurantName);
+    }
+
+    @PostMapping
+    public Restaurant insert(@RequestBody Restaurant restaurant){
+        return controller.insertNewRestaurant(restaurant);
+    }
+
+    @PutMapping("/updateRestaurant/{id}")
+    public ResponseEntity<Restaurant> update(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
+        return controller.updateRestaurant(restaurantId, restaurant);
+    }
+
+    @DeleteMapping("/deleteRestaurant/{id}")
+    public ResponseEntity<Restaurant> update(@PathVariable Long restaurantId){
+        return controller.deleteRestaurant(restaurantId);
     }
 }
