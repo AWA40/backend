@@ -111,7 +111,8 @@ public class RController {
     @DeleteMapping("/deleteProduct/{id}")
     public ResponseEntity<Product> delete(@PathVariable Long productId){
         return controller.deleteProduct(productId);
-    }//----------------------------------------------------------
+    }
+    //----------------------------------------------------------
     // Restaurant:
     @GetMapping("/getRestaurant")
     public List<Restaurant> RestaurantList(){
