@@ -1,0 +1,116 @@
+package com.example.foodorderingapplication.Controllers;
+
+import java.util.List;
+
+import com.example.foodorderingapplication.Customer;
+import com.example.foodorderingapplication.Order;
+import com.example.foodorderingapplication.Product;
+import com.example.foodorderingapplication.RestaurantManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+// Rest Controller tästä
+// Autowiretä MyControllerin kanssa
+
+@RestController
+@RequestMapping("/app")
+public class RController {
+
+    @Autowired
+    Controller controller;
+
+    // Customer:
+    @GetMapping("/getCustomer/{id}")
+    public Customer getCustomer(@PathVariable Long customerId){
+        return controller.findCustomerById(customerId);
+    }
+
+    @PostMapping
+    public Customer insert(@RequestBody Customer customer){
+        return controller.addCustomer(customer);
+    }
+
+    @PutMapping("/updateCustomer/{id}")
+    public ResponseEntity<Customer> update(@PathVariable Long customerId, @RequestBody Customer customer){
+        return controller.updateCustomer(customerId, customer);
+    }
+    //----------------------------------------------------------
+    // RestaurantManager:
+    @GetMapping("/getRestaurantManager/{id}")
+    public RestaurantManager getRestaurantManager(@PathVariable Long adminId){
+        return controller.findManagerById(adminId);
+    }
+
+    @PostMapping
+    public RestaurantManager insert(@RequestBody RestaurantManager manager){
+        return controller.addManager(manager);
+    }
+
+    @PutMapping("/updateManager/{id}")
+    public ResponseEntity<RestaurantManager> update(@PathVariable Long adminId, @RequestBody RestaurantManager manager){
+        return controller.updateManager(adminId, manager);
+    }
+    //----------------------------------------------------------
+    // Order:
+    @GetMapping("/getOrder")
+    public List<Order> OrderList(){
+        return controller.listOrders();
+    }
+
+    @GetMapping("/getOrder/{id}")
+    public Order getOrder(@PathVariable Long orderId){
+        return controller.findOrderById(orderId);
+    }
+
+    @PostMapping
+    public Order insert(@RequestBody Order order){
+        return controller.addOrder(order);
+    }
+
+    @PutMapping("/updateOrder/{id}")
+    public ResponseEntity<Order> update(@PathVariable Long orderId, @RequestBody Order order){
+        return controller.updateOrder(orderId, order);
+    }
+
+    @PutMapping("/cancelOrder/{id}")
+    public ResponseEntity<Order> cancel(@PathVariable Long orderId){
+        return controller.cancelOrder(orderId);
+    }
+    //----------------------------------------------------------
+    // Product:
+    @GetMapping("/getProduct")
+    public List<Product> ProductList(){
+        return controller.listProducts();
+    }
+
+    @GetMapping("/getProduct/{id}")
+    public Product getProduct(@PathVariable Long productId){
+        return controller.findProductById(productId);
+    }
+
+    @PostMapping
+    public Product insert(@RequestBody Product product){
+        return controller.newProduct(product);
+    }
+
+    @PutMapping("/updateProduct/{id}")
+    public ResponseEntity<Product> update(@PathVariable Long productId, @RequestBody Product product){
+        return controller.updateProduct(productId, product);
+    }
+
+    @DeleteMapping("/deleteProduct/{id}")
+    public ResponseEntity<Product> delete(@PathVariable Long productId){
+        return controller.deleteProduct(productId);
+    }
+}
