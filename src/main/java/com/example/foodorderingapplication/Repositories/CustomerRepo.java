@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     Customer findCustomerById(Long customerId);
+    
+    RestaurantManager findByUsername(String username);
 
 }
