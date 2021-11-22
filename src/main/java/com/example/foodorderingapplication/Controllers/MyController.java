@@ -19,11 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-// Controllerin toteutus
-// Eli basically kaikki toiminnallisuus tähän, ravintolan lisääminen etc etc
-// toisinsanoen työläin osuus
-// autorisaatio toimii kai myös tässä???
-// Tee tämä sitten kun saat tietokannan käyttöön
+// Toiminnot controllerin rajapinnoille
 
 @Service
 public class MyController implements Controller {
@@ -52,6 +48,20 @@ public class MyController implements Controller {
     @Override
     public Customer addCustomer(Customer customer){
         return customerRepo.save(customer);
+    }
+    
+    @Override
+    public Customer loadCustomerByUsername(String username) throws UsernameNotFoundException {
+        
+        Customer customerDb = customerRepo.findByUsername(username);
+
+        if(customerDb == null){
+            throw new UsernameNotFoundException("Not in database");
+        } else {
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority((customerDb.getRole().toString())));
+            return new Customer(username, customerDb.getPassword(), authorities);
+        }
     }
 
     @Override
