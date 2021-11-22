@@ -1,16 +1,59 @@
 package com.example.foodorderingapplication;
 
-public class RestaurantManager {
+import java.util.Collection;
 
-    private String name, username, password;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+@Entity
+@Table(name = "manager")
+public class RestaurantManager {
+    
+    @Column(name = "name")
+    private String name;
+    
+    @Column(name = "username")
+    private String username;
+    
+    @Column(name = "password")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    public RestaurantManager(String name, String username, String password, Role role) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "admin_id")
+    private Long adminId;
+
+    public RestaurantManager(String name, String username, String password, Role role, Long adminId) {
 
         this.name = name;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.adminId = adminId;
+    }
+
+    public RestaurantManager(String username2, String password2, Collection<SimpleGrantedAuthority> authorities) {
+    }
+
+    public Long getAdminId()
+    {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId)
+    {
+        this.adminId = adminId;
     }
 
     public String getName()
