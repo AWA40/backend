@@ -10,4 +10,6 @@ public interface RestaurantManagerRepo extends JpaRepository<RestaurantManager, 
 
     RestaurantManager findManagerById(Long adminId);
     
+    RestaurantManager findByUsername(String username);
+    
 }
