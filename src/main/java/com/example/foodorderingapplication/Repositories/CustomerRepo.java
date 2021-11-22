@@ -10,6 +10,6 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     Customer findCustomerById(Long customerId);
     
-    RestaurantManager findByUsername(String username);
+    Customer findByUsername(String username);
 
 }
