@@ -17,11 +17,13 @@ public interface Controller {
     // Käsittelee Customer puolen toiminnot, nämä riittänee toistaiseksi:
     public Customer findCustomerById(Long customerId);
     public Customer addCustomer(Customer customer);
+    public Customer loadCustomerByUsername(String username);
     public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer);
     
     // Käsittelee Admin puolen toiminnot, nämä kai riittää:
     public RestaurantManager findManagerById(Long adminId);
     public RestaurantManager addManager(RestaurantManager manager);
+    public RestaurantManager loadManagerByUsername(String username);
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager);
 
     // Käsittelee Order puolen toiminnot:
