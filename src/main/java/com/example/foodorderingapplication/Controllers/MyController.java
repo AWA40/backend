@@ -87,6 +87,20 @@ public class MyController implements Controller {
     public RestaurantManager addManager(RestaurantManager manager){
         return adminRepo.save(manager);
     }
+    
+    @Override
+    public RestaurantManager loadManagerByUsername(String username) throws UsernameNotFoundException {
+
+        RestaurantManager managerDb = adminRepo.findByUsername(username);
+
+        if(managerDb == null){
+            throw new UsernameNotFoundException("Not in database");
+        } else {
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority((managerDb.getRole().toString())));
+            return new RestaurantManager(username, managerDb.getPassword(), authorities);
+        }
+    }
 
     @Override
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager) {
