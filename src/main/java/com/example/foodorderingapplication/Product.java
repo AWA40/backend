@@ -1,16 +1,47 @@
 package com.example.foodorderingapplication;
 
-public class Product {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private String productName, productDescription;
+@Entity
+@Table(name = "products")
+public class Product {
+    
+    @Column(name = "product_name")
+    private String productName;
+    
+    @Column(name = "product_description")
+    private String productDescription;
+
+    @Column(name = "price")
     private double price;
 
-    public Product(String productName, String productDescription, double price){
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
+    private Long productId;
+
+    public Product(String productName, String productDescription, double price, Long productId){
 
         this.productName = productName;
         this.productDescription = productDescription;
         this.price = price;
+        this.productId = productId;
 
+    }
+
+    public Long getProductId()
+    {
+        return productId;
+    }
+
+    public void setProductId(Long productId)
+    {
+        this.productId = productId;
     }
 
     public String getProductName()
