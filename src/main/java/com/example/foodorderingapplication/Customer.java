@@ -1,16 +1,59 @@
 package com.example.foodorderingapplication;
 
-public class Customer {
+import java.util.Collection;
 
-    private String name, username, password;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+@Entity
+@Table(name = "customers")
+public class Customer {
+    
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Customer(String name, String username, String password, Role role) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "customer_id")
+    private Long customerId;
+
+    public Customer(String name, String username, String password, Role role, Long customerId) {
 
         this.name = name;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.customerId = customerId;
+    }
+
+    public Customer(String username2, String password2, Collection<SimpleGrantedAuthority> authorities) {
+    }
+
+    public Long getCustomerId()
+    {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId)
+    {
+        this.customerId = customerId;
     }
 
     public String getName()
