@@ -175,7 +175,6 @@ public class MyController implements Controller {
     //-----------------------------------------------------------
     // These are for the Product model:
 
-    // MUISTA LISÄTÄ TOIMINTO, JOSSA TUOTE LISÄTÄÄN ERIKSEEN RAVINTOLAAN!!!!
     @Override
     public List<Product> listProducts() {
         return productRepo.findAll();
