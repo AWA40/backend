@@ -44,7 +44,7 @@ public class MyController implements Controller {
 
     @Override
     public Customer findCustomerById(Long customerId) {
-        return customerRepo.findCustomerById(customerId);
+        return myController.findCustomerById(customerId);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
 
-        Customer customerDb = customerRepo.findCustomerById(customerId);
+        Customer customerDb = myController.findCustomerById(customerId);
 
         if(customerDb == null){
             return ResponseEntity.notFound().build();
@@ -82,7 +82,7 @@ public class MyController implements Controller {
     //These are for the RestaurantManager model:
     @Override
     public RestaurantManager findManagerById(Long adminId) {
-        return adminRepo.findManagerById(adminId);
+        return myController.findManagerById(adminId);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager) {
         
-        RestaurantManager managerDb = adminRepo.findManagerById(adminId);
+        RestaurantManager managerDb = myController.findManagerById(adminId);
 
         if(managerDb == null){
             return ResponseEntity.notFound().build();
@@ -119,13 +119,14 @@ public class MyController implements Controller {
     //-----------------------------------------------------------
     //These are for the Order model:
     @Override
-    public List<Order> listOrders() {
-        return orderRepo.findAll();
+    public List<Order> findAll() {
+        return myController.findAll();
     }
+
 
     @Override
     public Order findOrderById(Long orderId) {
-        return orderRepo.findOrderById(orderId);
+        return myController.findOrderById(orderId);
     }
 
     @Override
@@ -165,7 +166,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Order> cancelOrder(Long orderId) {
 
-        Order orderDb = orderRepo.findOrderById(orderId);
+        Order orderDb = myController.findOrderById(orderId);
 
         if(orderDb == null){
             return ResponseEntity.notFound().build();
@@ -184,7 +185,7 @@ public class MyController implements Controller {
 
     @Override
     public Product findProductById(Long productId) {
-        return productRepo.findProductById(productId);
+        return myController.findProductById(productId);
     }
 
     @Override
@@ -195,7 +196,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Product> updateProduct(Long productId, Product product) {
        
-        Product productDb = productRepo.findProductById(productId);
+        Product productDb = myController.findProductById(productId);
 
         if(productDb == null){
             return ResponseEntity.notFound().build();
@@ -209,7 +210,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Product> deleteProduct(Long productId) {
        
-        Product product = productRepo.findProductById(productId);
+        Product product = myController.findProductById(productId);
         
         if(product == null){
             return ResponseEntity.notFound().build();
@@ -227,12 +228,12 @@ public class MyController implements Controller {
 
     @Override
     public Restaurant findRestaurantById(Long restaurantId) {
-       return restaurantRepo.findRestaurantById(restaurantId);
+       return myController.findRestaurantById(restaurantId);
     }
 
     @Override
     public Restaurant findRestaurantByName(String restaurantName){
-        return restaurantRepo.findRestaurantByName(restaurantName);
+        return myController.findRestaurantByName(restaurantName);
     }
     
     @Override
@@ -243,7 +244,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Restaurant> updateRestaurant(Long restaurantId, Restaurant restaurant) {
         
-        Restaurant restaurantDb = restaurantRepo.findRestaurantById(restaurantId);
+        Restaurant restaurantDb = myController.findRestaurantById(restaurantId);
 
         if(restaurantDb == null){
             return ResponseEntity.notFound().build();
@@ -257,7 +258,7 @@ public class MyController implements Controller {
     @Override
     public ResponseEntity<Restaurant> deleteRestaurant(Long restaurantId) {
 
-        Restaurant restaurant = restaurantRepo.findRestaurantById(restaurantId);
+        Restaurant restaurant = myController.findRestaurantById(restaurantId);
 
         if(restaurant == null){
             return ResponseEntity.notFound().build();
