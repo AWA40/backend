@@ -18,7 +18,7 @@ public class Restaurant {
     @Column(name = "restaurant_name")
     private String restaurantName;
     
-    @Column(name = "address")
+    /*@Column(name = "address")
     private String address;
 
     @Column(name = "operating_hours")
@@ -28,19 +28,16 @@ public class Restaurant {
     private Type type;
     
     @Column(name = "menu")
-    private List<Product> menu;
+    private List<Product> menu;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "restaurant_id")
     private Long restaurantId;
 
-    public Restaurant(String restaurantName, String address, long operatingHours, Type type, Long restaurantId){
+    public Restaurant(String restaurantName, Long restaurantId){
 
         this.restaurantName = restaurantName;
-        this.address = address;
-        this.operatingHours = operatingHours;
-        this.type = type;
         this.restaurantId = restaurantId;
 
     }
@@ -65,7 +62,7 @@ public class Restaurant {
         this.restaurantName = restaurantName;
     }
 
-    public String Address()
+    /*public String Address()
     {
         return address;
     }
@@ -103,6 +100,6 @@ public class Restaurant {
     public void setMenu(List<Product> menu)
     {
         this.menu = menu;
-    }
+    }*/
     
 }
