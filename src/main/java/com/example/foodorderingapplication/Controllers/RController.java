@@ -81,10 +81,10 @@ public class RController {
         return controller.listOrders();
     }
 
-    @GetMapping("/getOrder/{id}")
+    /*@GetMapping("/getOrder/{id}")
     public Order getOrder(@PathVariable Long orderId){
         return controller.findOrderById(orderId);
-    }
+    }*/
 
     @PostMapping
     public Order insert(@RequestBody Order order){
@@ -96,10 +96,10 @@ public class RController {
         return controller.updateOrder(orderId, order);
     }*/
 
-    @PutMapping("/cancelOrder/{id}")
+    /*@PutMapping("/cancelOrder/{id}")
     public ResponseEntity<Order> cancel(@PathVariable Long orderId){
         return controller.cancelOrder(orderId);
-    }
+    }*/
     //----------------------------------------------------------
     // Product:
     @GetMapping("/getProduct")
@@ -107,17 +107,17 @@ public class RController {
         return controller.listProducts();
     }
 
-    @GetMapping("/getProduct/{id}")
+    /*@GetMapping("/getProduct/{id}")
     public Product getProduct(@PathVariable Long productId){
         return controller.findProductById(productId);
-    }
+    }*/
 
     @PostMapping
     public Product insertProduct(@RequestBody Product product){
         return controller.newProduct(product);
     }
 
-    @PutMapping("/updateProduct/{id}")
+    /*@PutMapping("/updateProduct/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product){
         return controller.updateProduct(productId, product);
     }
@@ -125,7 +125,7 @@ public class RController {
     @DeleteMapping("/deleteProduct/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable Long productId){
         return controller.deleteProduct(productId);
-    }
+    }*/
     //----------------------------------------------------------
     // Restaurant:
     @GetMapping("/getRestaurant")
@@ -133,10 +133,10 @@ public class RController {
         return controller.listRestaurants();
     }
 
-    @GetMapping("/getRestaurant/{id}")
+    /*@GetMapping("/getRestaurant/{id}")
     public Restaurant getRestaurant(@PathVariable Long restaurantId){
         return controller.findRestaurantById(restaurantId);
-    }
+    }*/
 
     @GetMapping("/getRestaurant/{name}")
     public Restaurant getRestaurant(@PathVariable String restaurantName){
@@ -148,7 +148,7 @@ public class RController {
         return controller.insertNewRestaurant(restaurant);
     }
 
-    @PutMapping("/updateRestaurant/{id}")
+    /*@PutMapping("/updateRestaurant/{id}")
     public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
         return controller.updateRestaurant(restaurantId, restaurant);
     }
@@ -156,5 +156,5 @@ public class RController {
     @DeleteMapping("/deleteRestaurant/{id}")
     public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long restaurantId){
         return controller.deleteRestaurant(restaurantId);
-    }
+    }*/
 }
