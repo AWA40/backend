@@ -80,10 +80,10 @@ public class MyController implements Controller {
     }*/
     //-----------------------------------------------------------
     //These are for the RestaurantManager model:
-    @Override
+    /*@Override
     public RestaurantManager findManagerById(Long adminId) {
         return adminRepo.findManagerById(adminId);
-    }
+    }*/
 
     @Override
     public RestaurantManager addManager(RestaurantManager manager){
@@ -104,7 +104,7 @@ public class MyController implements Controller {
         }
     }*/
 
-    @Override
+    /*@Override
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager) {
         
         RestaurantManager managerDb = adminRepo.findManagerById(adminId);
@@ -115,7 +115,7 @@ public class MyController implements Controller {
         BeanUtils.copyProperties(restaurantManager, managerDb, "adminId");
         managerDb = adminRepo.save(managerDb);
         return ResponseEntity.ok(managerDb);
-    }
+    }*/
     //-----------------------------------------------------------
     //These are for the Order model:
     @Override
