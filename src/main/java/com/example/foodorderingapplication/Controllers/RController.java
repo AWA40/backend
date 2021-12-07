@@ -54,10 +54,10 @@ public class RController {
     }*/
     //----------------------------------------------------------
     // RestaurantManager:
-    @GetMapping("/getRestaurantManager/{id}")
+    /*@GetMapping("/getRestaurantManager/{id}")
     public RestaurantManager getRestaurantManager(@PathVariable Long adminId){
         return controller.findManagerById(adminId);
-    }
+    }*/
     
     /*@GetMapping("/admin")
     public ResponseEntity<String> setAdmin(){
@@ -70,10 +70,10 @@ public class RController {
         return controller.addManager(manager);
     }
 
-    @PutMapping("/updateManager/{id}")
+    /*@PutMapping("/updateManager/{id}")
     public ResponseEntity<RestaurantManager> update(@PathVariable Long adminId, @RequestBody RestaurantManager manager){
         return controller.updateManager(adminId, manager);
-    }
+    }*/
     //----------------------------------------------------------
     // Order:
     @GetMapping("/getOrder")
