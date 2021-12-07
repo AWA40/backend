@@ -9,6 +9,6 @@ import com.example.foodorderingapplication.Order;
 @Repository
 public interface OrderRepo extends JpaRepository<Order, String> {
 
-    Order findOrderById(Long orderId);
+    //Order findOrderById(Long orderId);
     
 }
