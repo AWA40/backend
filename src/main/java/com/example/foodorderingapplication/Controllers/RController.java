@@ -6,9 +6,11 @@ import com.example.foodorderingapplication.Customer;
 import com.example.foodorderingapplication.Order;
 import com.example.foodorderingapplication.Product;
 import com.example.foodorderingapplication.RestaurantManager;
+import com.example.foodorderingapplication.Restaurant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 
 // Rest Controller tästä
@@ -35,11 +37,11 @@ public class RController {
         return controller.findCustomerById(customerId);
     }
     
-    @GetMapping("/Customer")
+    /*@GetMapping("/Customer")
     public ResponseEntity<String> setCustomer(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return ResponseEntity.ok("Log in as customer" +username);
-    }
+    }*/
 
     @PostMapping
     public Customer insert(@RequestBody Customer customer){
@@ -57,11 +59,11 @@ public class RController {
         return controller.findManagerById(adminId);
     }
     
-    @GetMapping("/admin")
+    /*@GetMapping("/admin")
     public ResponseEntity<String> setAdmin(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return ResponseEntity.ok("Logged in as Admin" +username);
-    }
+    }*/
 
     @PostMapping
     public RestaurantManager insert(@RequestBody RestaurantManager manager){
@@ -111,17 +113,17 @@ public class RController {
     }
 
     @PostMapping
-    public Product insert(@RequestBody Product product){
+    public Product insertProduct(@RequestBody Product product){
         return controller.newProduct(product);
     }
 
     @PutMapping("/updateProduct/{id}")
-    public ResponseEntity<Product> update(@PathVariable Long productId, @RequestBody Product product){
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product){
         return controller.updateProduct(productId, product);
     }
 
     @DeleteMapping("/deleteProduct/{id}")
-    public ResponseEntity<Product> delete(@PathVariable Long productId){
+    public ResponseEntity<Product> deleteProduct(@PathVariable Long productId){
         return controller.deleteProduct(productId);
     }
     //----------------------------------------------------------
@@ -142,17 +144,17 @@ public class RController {
     }
 
     @PostMapping
-    public Restaurant insert(@RequestBody Restaurant restaurant){
+    public Restaurant insertRestaurant(@RequestBody Restaurant restaurant){
         return controller.insertNewRestaurant(restaurant);
     }
 
     @PutMapping("/updateRestaurant/{id}")
-    public ResponseEntity<Restaurant> update(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
         return controller.updateRestaurant(restaurantId, restaurant);
     }
 
     @DeleteMapping("/deleteRestaurant/{id}")
-    public ResponseEntity<Restaurant> update(@PathVariable Long restaurantId){
+    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long restaurantId){
         return controller.deleteRestaurant(restaurantId);
     }
 }
