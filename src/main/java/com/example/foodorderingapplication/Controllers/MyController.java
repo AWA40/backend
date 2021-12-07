@@ -123,10 +123,10 @@ public class MyController implements Controller {
         return orderRepo.findAll();
     }
 
-    @Override
+    /*@Override
     public Order findOrderById(Long orderId) {
         return orderRepo.findOrderById(orderId);
-    }
+    }*/
 
     @Override
     public Order addOrder(Order order) {
@@ -162,7 +162,7 @@ public class MyController implements Controller {
         }
     }*/
 
-    @Override
+    /*@Override
     public ResponseEntity<Order> cancelOrder(Long orderId) {
 
         Order orderDb = orderRepo.findOrderById(orderId);
@@ -173,7 +173,7 @@ public class MyController implements Controller {
         //orderDb.setOrderStatus(OrderStatus.CANCELED);
         orderDb = orderRepo.save(orderDb);
         return ResponseEntity.ok(orderDb);
-    }
+    }*/
     //-----------------------------------------------------------
     // These are for the Product model:
 
@@ -182,17 +182,17 @@ public class MyController implements Controller {
         return productRepo.findAll();
     }
 
-    @Override
+    /*@Override
     public Product findProductById(Long productId) {
         return productRepo.findProductById(productId);
-    }
+    }*/
 
     @Override
     public Product newProduct(Product product) {
         return productRepo.save(product);
     }
 
-    @Override
+    /*@Override
     public ResponseEntity<Product> updateProduct(Long productId, Product product) {
        
         Product productDb = productRepo.findProductById(productId);
@@ -217,7 +217,7 @@ public class MyController implements Controller {
 
         productRepo.delete(product);
         return ResponseEntity.noContent().build();
-    }
+    }*/
     //-----------------------------------------------------------
     //These are for the Restaurant model:
     @Override
@@ -225,10 +225,10 @@ public class MyController implements Controller {
         return restaurantRepo.findAll();
     }
 
-    @Override
+    /*@Override
     public Restaurant findRestaurantById(Long restaurantId) {
        return restaurantRepo.findRestaurantById(restaurantId);
-    }
+    }*/
 
     @Override
     public Restaurant findRestaurantByName(String restaurantName){
@@ -240,7 +240,7 @@ public class MyController implements Controller {
         return restaurantRepo.save(restaurant);
     }
 
-    @Override
+    /*@Override
     public ResponseEntity<Restaurant> updateRestaurant(Long restaurantId, Restaurant restaurant) {
         
         Restaurant restaurantDb = restaurantRepo.findRestaurantById(restaurantId);
@@ -265,5 +265,5 @@ public class MyController implements Controller {
 
         restaurantRepo.delete(restaurant);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }
