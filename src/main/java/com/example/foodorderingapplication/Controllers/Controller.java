@@ -21,10 +21,10 @@ public interface Controller {
     //public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer);
     
     // Käsittelee Admin puolen toiminnot, nämä kai riittää:
-    public RestaurantManager findManagerById(Long adminId);
+    //public RestaurantManager findManagerById(Long adminId);
     public RestaurantManager addManager(RestaurantManager manager);
     //public RestaurantManager loadManagerByUsername(String username);
-    public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager);
+    //public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager);
 
     // Käsittelee Order puolen toiminnot:
     public List<Order> listOrders();
