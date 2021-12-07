@@ -170,7 +170,7 @@ public class MyController implements Controller {
         if(orderDb == null){
             return ResponseEntity.notFound().build();
         }
-        orderDb.setOrderStatus(OrderStatus.CANCELED);
+        //orderDb.setOrderStatus(OrderStatus.CANCELED);
         orderDb = orderRepo.save(orderDb);
         return ResponseEntity.ok(orderDb);
     }
