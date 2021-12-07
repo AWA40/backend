@@ -133,7 +133,7 @@ public class MyController implements Controller {
         return orderRepo.save(order);
     }
 
-    @Override
+    /*@Override
     public ResponseEntity<Order> updateOrder(Long orderId, Order order) {
 
         Order orderDb = orderRepo.findOrderById(orderId);
@@ -160,7 +160,7 @@ public class MyController implements Controller {
             default:
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
     @Override
     public ResponseEntity<Order> cancelOrder(Long orderId) {
