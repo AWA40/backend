@@ -17,6 +17,8 @@ import com.example.foodorderingapplication.Repositories.RestaurantRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 // Toiminnot controllerin rajapinnoille
@@ -50,7 +52,7 @@ public class MyController implements Controller {
         return customerRepo.save(customer);
     }
     
-    @Override
+    /*@Override
     public Customer loadCustomerByUsername(String username) throws UsernameNotFoundException {
         
         Customer customerDb = customerRepo.findByUsername(username);
@@ -62,7 +64,7 @@ public class MyController implements Controller {
             authorities.add(new SimpleGrantedAuthority((customerDb.getRole().toString())));
             return new Customer(username, customerDb.getPassword(), authorities);
         }
-    }
+    }*/
 
     @Override
     public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
@@ -88,7 +90,7 @@ public class MyController implements Controller {
         return adminRepo.save(manager);
     }
     
-    @Override
+    /*@Override
     public RestaurantManager loadManagerByUsername(String username) throws UsernameNotFoundException {
 
         RestaurantManager managerDb = adminRepo.findByUsername(username);
@@ -100,7 +102,7 @@ public class MyController implements Controller {
             authorities.add(new SimpleGrantedAuthority((managerDb.getRole().toString())));
             return new RestaurantManager(username, managerDb.getPassword(), authorities);
         }
-    }
+    }*/
 
     @Override
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager) {
