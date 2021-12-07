@@ -43,7 +43,7 @@ public class RController {
         return ResponseEntity.ok("Log in as customer" +username);
     }*/
 
-    @PostMapping
+    @PostMapping("/insertCustomer")
     public Customer insert(@RequestBody Customer customer){
         return controller.addCustomer(customer);
     }
@@ -65,7 +65,7 @@ public class RController {
         return ResponseEntity.ok("Logged in as Admin" +username);
     }*/
 
-    @PostMapping
+    @PostMapping("/insertRestaurantManager")
     public RestaurantManager insert(@RequestBody RestaurantManager manager){
         return controller.addManager(manager);
     }
@@ -78,7 +78,7 @@ public class RController {
     // Order:
     @GetMapping("/getOrder")
     public List<Order> OrderList(){
-        return controller.listOrders();
+        return controller.findAll();
     }
 
     @GetMapping("/getOrder/{id}")
@@ -86,7 +86,7 @@ public class RController {
         return controller.findOrderById(orderId);
     }
 
-    @PostMapping
+    @PostMapping("/insertOrder")
     public Order insert(@RequestBody Order order){
         return controller.addOrder(order);
     }
@@ -112,7 +112,7 @@ public class RController {
         return controller.findProductById(productId);
     }
 
-    @PostMapping
+    @PostMapping("/insertProduct")
     public Product insertProduct(@RequestBody Product product){
         return controller.newProduct(product);
     }
@@ -143,7 +143,7 @@ public class RController {
         return controller.findRestaurantByName(restaurantName);
     }
 
-    @PostMapping
+    @PostMapping("/insertRestaurant")
     public Restaurant insertRestaurant(@RequestBody Restaurant restaurant){
         return controller.insertNewRestaurant(restaurant);
     }
