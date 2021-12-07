@@ -28,25 +28,25 @@ public interface Controller {
 
     // Käsittelee Order puolen toiminnot:
     public List<Order> listOrders();
-    public Order findOrderById(Long orderId);
+    //public Order findOrderById(Long orderId);
     public Order addOrder(Order order);
     //public ResponseEntity<Order> updateOrder(Long orderId, Order order);
-    public ResponseEntity<Order> cancelOrder(Long id);
+    //public ResponseEntity<Order> cancelOrder(Long id);
 
     // Käsittelee Product puolen toiminnot:
     public List<Product> listProducts();
-    public Product findProductById(Long productId);
+    //public Product findProductById(Long productId);
     public Product newProduct(Product product);
-    public ResponseEntity<Product> updateProduct(Long productId, Product product);
-    public ResponseEntity<Product> deleteProduct(Long productId);
+    /*public ResponseEntity<Product> updateProduct(Long productId, Product product);
+    public ResponseEntity<Product> deleteProduct(Long productId);*/
     // Lisää vielä toiminto, jossa tuote lisätään ravintolaan
 
     // Käsittelee Restaurant puolen toiminnot:
     public List<Restaurant> listRestaurants();
-    public Restaurant findRestaurantById(Long restaurantId);
+    //public Restaurant findRestaurantById(Long restaurantId);
     public Restaurant findRestaurantByName(String restaurantName);
     public Restaurant insertNewRestaurant(Restaurant restaurant);
-    public ResponseEntity<Restaurant> updateRestaurant(Long restaurantId, Restaurant restaurant);
-    public ResponseEntity<Restaurant> deleteRestaurant(Long restaurantId);
+    /*public ResponseEntity<Restaurant> updateRestaurant(Long restaurantId, Restaurant restaurant);
+    public ResponseEntity<Restaurant> deleteRestaurant(Long restaurantId);*/
     
 }
