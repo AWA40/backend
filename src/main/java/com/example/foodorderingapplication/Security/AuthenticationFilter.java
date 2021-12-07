@@ -1,4 +1,4 @@
-package com.example.foodorderingapplication.Security;
+/*package com.example.foodorderingapplication.Security;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -32,7 +32,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         /*String username = request.getParameter("username");
         String passwdord = request.getParameter("password");*/
         
-        String[] cred = getBasicCredentials(request);
+        /*String[] cred = getBasicCredentials(request);
 
         UsernamePasswordAuthenticationToken authToken = 
                 new UsernamePasswordAuthenticationToken(cred[0], cred[1]);
@@ -71,4 +71,4 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         new ObjectMapper().writeValue(response.getOutputStream(), jsonBody);
     }
-}
+}*/
