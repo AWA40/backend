@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.example.foodorderingapplication.Order;
 
 @Repository
-public interface OrderRepo extends JpaRepository<Order, String> {
+public interface OrderRepo extends JpaRepository<Order, Long> {
 
-    //Order findOrderById(Long orderId);
+    Order findOrderById(Long orderId);
     
 }
