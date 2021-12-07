@@ -27,7 +27,7 @@ public interface Controller {
     public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager);
 
     // Käsittelee Order puolen toiminnot:
-    public List<Order> listOrders();
+    public List<Order> findAll();
     public Order findOrderById(Long orderId);
     public Order addOrder(Order order);
     //public ResponseEntity<Order> updateOrder(Long orderId, Order order);
