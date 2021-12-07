@@ -15,10 +15,10 @@ import org.springframework.http.ResponseEntity;
 public interface Controller {
 
     // Käsittelee Customer puolen toiminnot, nämä riittänee toistaiseksi:
-    public Customer findCustomerById(Long customerId);
+    //public Customer findCustomerById(Long customerId);
     public Customer addCustomer(Customer customer);
     //public Customer loadCustomerByUsername(String username);
-    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer);
+    //public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer);
     
     // Käsittelee Admin puolen toiminnot, nämä kai riittää:
     public RestaurantManager findManagerById(Long adminId);
