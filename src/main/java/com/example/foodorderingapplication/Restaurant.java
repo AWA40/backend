@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "restaurant")
 public class Restaurant {
     
+    private String restaurant;
+    
     @Column(name = "restaurant_name")
     private String restaurantName;
     
@@ -35,11 +37,22 @@ public class Restaurant {
     @Column(name = "restaurant_id")
     private Long restaurantId;
 
-    public Restaurant(String restaurantName, Long restaurantId){
+    public Restaurant(String restaurantName, String restaurant, Long restaurantId){
 
         this.restaurantName = restaurantName;
+        this.restaurant = restaurant;
         this.restaurantId = restaurantId;
 
+    }
+    
+    public String getRestaurant()
+    {
+        return restaurant;
+    }
+
+    public void setRestaurant(String restaurant)
+    {
+        this.restaurant = restaurant;
     }
 
     public Long getRestaurantId()
