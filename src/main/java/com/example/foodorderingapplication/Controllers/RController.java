@@ -91,10 +91,10 @@ public class RController {
         return controller.addOrder(order);
     }
 
-    @PutMapping("/updateOrder/{id}")
+    /*@PutMapping("/updateOrder/{id}")
     public ResponseEntity<Order> update(@PathVariable Long orderId, @RequestBody Order order){
         return controller.updateOrder(orderId, order);
-    }
+    }*/
 
     @PutMapping("/cancelOrder/{id}")
     public ResponseEntity<Order> cancel(@PathVariable Long orderId){
