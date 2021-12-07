@@ -32,10 +32,10 @@ public class RController {
     Controller controller;
 
     // Customer:
-    @GetMapping("/getCustomer/{id}")
+    /*@GetMapping("/getCustomer/{id}")
     public Customer getCustomer(@PathVariable Long customerId){
         return controller.findCustomerById(customerId);
-    }
+    }*/
     
     /*@GetMapping("/Customer")
     public ResponseEntity<String> setCustomer(){
@@ -48,10 +48,10 @@ public class RController {
         return controller.addCustomer(customer);
     }
 
-    @PutMapping("/updateCustomer/{id}")
+    /*@PutMapping("/updateCustomer/{id}")
     public ResponseEntity<Customer> update(@PathVariable Long customerId, @RequestBody Customer customer){
         return controller.updateCustomer(customerId, customer);
-    }
+    }*/
     //----------------------------------------------------------
     // RestaurantManager:
     @GetMapping("/getRestaurantManager/{id}")
