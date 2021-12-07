@@ -1,4 +1,4 @@
-package com.example.foodorderingapplication.Security;
+/*package com.example.foodorderingapplication.Security;
 
 import javax.servlet.Filter;
 
@@ -52,4 +52,4 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 
     }
     
-}
+}*/
