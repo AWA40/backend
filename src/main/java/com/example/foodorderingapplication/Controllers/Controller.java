@@ -30,7 +30,7 @@ public interface Controller {
     public List<Order> listOrders();
     public Order findOrderById(Long orderId);
     public Order addOrder(Order order);
-    public ResponseEntity<Order> updateOrder(Long orderId, Order order);
+    //public ResponseEntity<Order> updateOrder(Long orderId, Order order);
     public ResponseEntity<Order> cancelOrder(Long id);
 
     // Käsittelee Product puolen toiminnot:
