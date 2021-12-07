@@ -32,10 +32,10 @@ public class RController {
     Controller controller;
 
     // Customer:
-    /*@GetMapping("/getCustomer/{id}")
+    @GetMapping("/getCustomer/{id}")
     public Customer getCustomer(@PathVariable Long customerId){
         return controller.findCustomerById(customerId);
-    }*/
+    }
     
     /*@GetMapping("/Customer")
     public ResponseEntity<String> setCustomer(){
@@ -54,10 +54,10 @@ public class RController {
     }
     //----------------------------------------------------------
     // RestaurantManager:
-    /*@GetMapping("/getRestaurantManager/{id}")
+    @GetMapping("/getRestaurantManager/{id}")
     public RestaurantManager getRestaurantManager(@PathVariable Long adminId){
         return controller.findManagerById(adminId);
-    }*/
+    }
     
     /*@GetMapping("/admin")
     public ResponseEntity<String> setAdmin(){
@@ -81,10 +81,10 @@ public class RController {
         return controller.listOrders();
     }
 
-    /*@GetMapping("/getOrder/{id}")
+    @GetMapping("/getOrder/{id}")
     public Order getOrder(@PathVariable Long orderId){
         return controller.findOrderById(orderId);
-    }*/
+    }
 
     @PostMapping
     public Order insert(@RequestBody Order order){
@@ -107,10 +107,10 @@ public class RController {
         return controller.listProducts();
     }
 
-    /*@GetMapping("/getProduct/{id}")
+    @GetMapping("/getProduct/{id}")
     public Product getProduct(@PathVariable Long productId){
         return controller.findProductById(productId);
-    }*/
+    }
 
     @PostMapping
     public Product insertProduct(@RequestBody Product product){
@@ -133,10 +133,10 @@ public class RController {
         return controller.listRestaurants();
     }
 
-    /*@GetMapping("/getRestaurant/{id}")
+    @GetMapping("/getRestaurant/{id}")
     public Restaurant getRestaurant(@PathVariable Long restaurantId){
         return controller.findRestaurantById(restaurantId);
-    }*/
+    }
 
     @GetMapping("/getRestaurant/{name}")
     public Restaurant getRestaurant(@PathVariable String restaurantName){
