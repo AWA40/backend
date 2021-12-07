@@ -42,10 +42,10 @@ public class MyController implements Controller {
     //-------------------------------------------------------
     // These are for the Customer model:
 
-    @Override
+    /*@Override
     public Customer findCustomerById(Long customerId) {
         return customerRepo.findCustomerById(customerId);
-    }
+    }*/
 
     @Override
     public Customer addCustomer(Customer customer){
@@ -66,7 +66,7 @@ public class MyController implements Controller {
         }
     }*/
 
-    @Override
+    /*@Override
     public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
 
         Customer customerDb = customerRepo.findCustomerById(customerId);
@@ -77,7 +77,7 @@ public class MyController implements Controller {
         BeanUtils.copyProperties(customer, customerDb, "customerId");
         customerDb = customerRepo.save(customerDb);
         return ResponseEntity.ok(customerDb);
-    }
+    }*/
     //-----------------------------------------------------------
     //These are for the RestaurantManager model:
     @Override
