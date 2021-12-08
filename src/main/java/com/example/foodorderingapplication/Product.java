@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "products")
+@Table(name = "item")
 public class Product {
     
     @Column(name = "product_name")
@@ -22,7 +22,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "product_id")
+    @Column(name = "id")
     private Long productId;
 
     public Product(String productName, String productDescription, double price, Long productId){
@@ -32,6 +32,10 @@ public class Product {
         this.price = price;
         this.productId = productId;
 
+    }
+
+    public Product() {
+        
     }
 
     public Long getProductId()
