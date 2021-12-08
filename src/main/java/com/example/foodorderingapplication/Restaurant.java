@@ -34,7 +34,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "restaurant_id")
+    @Column(name = "id")
     private Long restaurantId;
 
     public Restaurant(String restaurantName, String restaurant, Long restaurantId){
@@ -42,7 +42,10 @@ public class Restaurant {
         this.restaurantName = restaurantName;
         this.restaurant = restaurant;
         this.restaurantId = restaurantId;
+    }
 
+    public Restaurant() {
+        
     }
     
     public String getRestaurant()
