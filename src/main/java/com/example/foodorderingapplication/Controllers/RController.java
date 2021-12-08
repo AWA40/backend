@@ -6,6 +6,7 @@ import com.example.foodorderingapplication.Customer;
 import com.example.foodorderingapplication.Order;
 import com.example.foodorderingapplication.Product;
 import com.example.foodorderingapplication.RestaurantManager;
+import com.example.foodorderingapplication.Repositories.CustomerRepo;
 import com.example.foodorderingapplication.Restaurant;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.web.bind.annotation.RequestParam;
 
 
+// Rest Controller tästä
+
 @RestController
 @RequestMapping("/app")
 public class RController {
@@ -29,10 +32,13 @@ public class RController {
     @Autowired
     Controller controller;
 
+    @Autowired
+    CustomerRepo customerRepo;
+
     // Customer:
     @GetMapping("/getCustomer/{id}")
-    public Customer getCustomer(@PathVariable Long customerId){
-        return controller.findCustomerById(customerId);
+    public Customer getCustomer(@PathVariable Long id){
+        return controller.findCustomerById(id);
     }
     
     /*@GetMapping("/Customer")
@@ -53,8 +59,8 @@ public class RController {
     //----------------------------------------------------------
     // RestaurantManager:
     @GetMapping("/getRestaurantManager/{id}")
-    public RestaurantManager getRestaurantManager(@PathVariable Long adminId){
-        return controller.findManagerById(adminId);
+    public RestaurantManager getRestaurantManager(@PathVariable Long id){
+        return controller.findManagerById(id);
     }
     
     /*@GetMapping("/admin")
@@ -69,8 +75,8 @@ public class RController {
     }
 
     @PutMapping("/updateManager/{id}")
-    public ResponseEntity<RestaurantManager> update(@PathVariable Long adminId, @RequestBody RestaurantManager manager){
-        return controller.updateManager(adminId, manager);
+    public ResponseEntity<RestaurantManager> update(@PathVariable Long id, @RequestBody RestaurantManager manager){
+        return controller.updateManager(id, manager);
     }
     //----------------------------------------------------------
     // Order:
@@ -80,8 +86,8 @@ public class RController {
     }
 
     @GetMapping("/getOrder/{id}")
-    public Order getOrder(@PathVariable Long orderId){
-        return controller.findOrderById(orderId);
+    public Order getOrder(@PathVariable Long id){
+        return controller.findOrderById(id);
     }
 
     @PostMapping("/insertOrder")
@@ -95,8 +101,8 @@ public class RController {
     }*/
 
     @PutMapping("/cancelOrder/{id}")
-    public ResponseEntity<Order> cancel(@PathVariable Long orderId){
-        return controller.cancelOrder(orderId);
+    public ResponseEntity<Order> cancel(@PathVariable Long id){
+        return controller.cancelOrder(id);
     }
     //----------------------------------------------------------
     // Product:
@@ -106,8 +112,8 @@ public class RController {
     }
 
     @GetMapping("/getProduct/{id}")
-    public Product getProduct(@PathVariable Long productId){
-        return controller.findProductById(productId);
+    public Product getProduct(@PathVariable Long id){
+        return controller.findProductById(id);
     }
 
     @PostMapping("/insertProduct")
@@ -116,13 +122,13 @@ public class RController {
     }
 
     @PutMapping("/updateProduct/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product){
-        return controller.updateProduct(productId, product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
+        return controller.updateProduct(id, product);
     }
 
     @DeleteMapping("/deleteProduct/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable Long productId){
-        return controller.deleteProduct(productId);
+    public ResponseEntity<Product> deleteProduct(@PathVariable Long id){
+        return controller.deleteProduct(id);
     }
     //----------------------------------------------------------
     // Restaurant:
@@ -132,8 +138,8 @@ public class RController {
     }
 
     @GetMapping("/getRestaurant/{id}")
-    public Restaurant getRestaurant(@PathVariable Long restaurantId){
-        return controller.findRestaurantById(restaurantId);
+    public Restaurant getRestaurant(@PathVariable Long id){
+        return controller.findRestaurantById(id);
     }
 
     @GetMapping("/getRestaurant/{name}")
@@ -147,12 +153,12 @@ public class RController {
     }
 
     @PutMapping("/updateRestaurant/{id}")
-    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
-        return controller.updateRestaurant(restaurantId, restaurant);
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
+        return controller.updateRestaurant(id, restaurant);
     }
 
     @DeleteMapping("/deleteRestaurant/{id}")
-    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long restaurantId){
-        return controller.deleteRestaurant(restaurantId);
+    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long id){
+        return controller.deleteRestaurant(id);
     }
 }
