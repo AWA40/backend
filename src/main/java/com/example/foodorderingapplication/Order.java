@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "order")
 public class Order {
      
     @Column(name = "order_status")
@@ -19,14 +19,18 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id")
+    @Column(name = "id")
     private Long orderId;
 
-    private Order(OrderStatus OrderStatus, long finalCost, Long orderId) {
+    public Order(OrderStatus OrderStatus, long finalCost, Long orderId) {
 
         this.OrderStatus = OrderStatus;
         this.finalCost = finalCost;
         this.orderId = orderId;
+
+    }
+
+    public Order() {
 
     }
 
