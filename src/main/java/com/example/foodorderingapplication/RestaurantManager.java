@@ -11,10 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
-@Table(name = "manager")
+@Table(name = "admin")
 public class RestaurantManager {
     
     @Column(name = "name")
@@ -26,24 +26,25 @@ public class RestaurantManager {
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    /*@Enumerated(EnumType.STRING)
+    private Role role;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "admin_id")
+    @Column(name = "id")
     private Long adminId;
 
-    public RestaurantManager(String name, String username, String password, Role role, Long adminId) {
+    public RestaurantManager(String name, String username, String password, Long adminId) {
 
         this.name = name;
         this.username = username;
         this.password = password;
-        this.role = role;
+        //this.role = role;
         this.adminId = adminId;
     }
 
-    public RestaurantManager(String username2, String password2, Collection<SimpleGrantedAuthority> authorities) {
+    public RestaurantManager() {
+
     }
 
     public Long getAdminId()
@@ -86,7 +87,7 @@ public class RestaurantManager {
         this.password = password;
     }
 
-    public Role getRole()
+    /*public Role getRole()
     {
         return role;
     }
@@ -94,6 +95,6 @@ public class RestaurantManager {
     public void setRole(Role role)
     {
         this.role = role;
-    }
+    }*/
     
 }
