@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.web.bind.annotation.RequestParam;
 
 
-// Rest Controller tästä
-
 @RestController
 @RequestMapping("/app")
 public class RController {
