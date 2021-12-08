@@ -1,270 +1,162 @@
 package com.example.foodorderingapplication.Controllers;
 
-import java.util.*;
+import java.util.List;
 
 import com.example.foodorderingapplication.Customer;
 import com.example.foodorderingapplication.Order;
-import com.example.foodorderingapplication.OrderStatus;
 import com.example.foodorderingapplication.Product;
-import com.example.foodorderingapplication.Restaurant;
 import com.example.foodorderingapplication.RestaurantManager;
-import com.example.foodorderingapplication.Repositories.CustomerRepo;
-import com.example.foodorderingapplication.Repositories.OrderRepo;
-import com.example.foodorderingapplication.Repositories.ProductRepo;
-import com.example.foodorderingapplication.Repositories.RestaurantManagerRepo;
-import com.example.foodorderingapplication.Repositories.RestaurantRepo;
+import com.example.foodorderingapplication.Restaurant;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RequestParam;
 
-// Toiminnot controllerin rajapinnoille
 
-@Service
-public class MyController implements Controller {
+// Rest Controller tästä
 
-    MyController myController;
+@RestController
+@RequestMapping("/app")
+public class RController {
 
     @Autowired
-    CustomerRepo customerRepo;
-    @Autowired
-    RestaurantManagerRepo adminRepo;
-    @Autowired
-    RestaurantRepo restaurantRepo;
-    @Autowired
-    ProductRepo productRepo;
-    @Autowired
-    OrderRepo orderRepo;
+    Controller controller;
 
-    //-------------------------------------------------------
-    // These are for the Customer model:
+    // Customer:
+    @GetMapping("/getCustomer/{id}")
+    public Customer getCustomer(@PathVariable Long customerId){
+        
+        return controller.findCustomerById(customerId);
 
-    @Override
-    public Customer findCustomerById(Long customerId) {
-        return myController.findCustomerById(customerId);
-    }
-
-    @Override
-    public Customer addCustomer(Customer customer){
-        return customerRepo.save(customer);
     }
     
-    /*@Override
-    public Customer loadCustomerByUsername(String username) throws UsernameNotFoundException {
-        
-        Customer customerDb = customerRepo.findByUsername(username);
-
-        if(customerDb == null){
-            throw new UsernameNotFoundException("Not in database");
-        } else {
-            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority((customerDb.getRole().toString())));
-            return new Customer(username, customerDb.getPassword(), authorities);
-        }
+    /*@GetMapping("/Customer")
+    public ResponseEntity<String> setCustomer(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok("Log in as customer" +username);
     }*/
 
-    @Override
-    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
-
-        Customer customerDb = myController.findCustomerById(customerId);
-
-        if(customerDb == null){
-            return ResponseEntity.notFound().build();
-        }
-        BeanUtils.copyProperties(customer, customerDb, "customerId");
-        customerDb = customerRepo.save(customerDb);
-        return ResponseEntity.ok(customerDb);
-    }
-    //-----------------------------------------------------------
-    //These are for the RestaurantManager model:
-    @Override
-    public RestaurantManager findManagerById(Long adminId) {
-        return myController.findManagerById(adminId);
+    @PostMapping("/insertCustomer")
+    public Customer insert(@RequestBody Customer customer){
+        return controller.addCustomer(customer);
     }
 
-    @Override
-    public RestaurantManager addManager(RestaurantManager manager){
-        return adminRepo.save(manager);
+    @PutMapping("/updateCustomer/{id}")
+    public ResponseEntity<Customer> update(@PathVariable Long customerId, @RequestBody Customer customer){
+        return controller.updateCustomer(customerId, customer);
+    }
+    //----------------------------------------------------------
+    // RestaurantManager:
+    @GetMapping("/getRestaurantManager/{id}")
+    public RestaurantManager getRestaurantManager(@PathVariable Long id){
+        return controller.findManagerById(id);
     }
     
-    /*@Override
-    public RestaurantManager loadManagerByUsername(String username) throws UsernameNotFoundException {
-
-        RestaurantManager managerDb = adminRepo.findByUsername(username);
-
-        if(managerDb == null){
-            throw new UsernameNotFoundException("Not in database");
-        } else {
-            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority((managerDb.getRole().toString())));
-            return new RestaurantManager(username, managerDb.getPassword(), authorities);
-        }
+    /*@GetMapping("/admin")
+    public ResponseEntity<String> setAdmin(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok("Logged in as Admin" +username);
     }*/
 
-    @Override
-    public ResponseEntity<RestaurantManager> updateManager(Long adminId, RestaurantManager restaurantManager) {
-        
-        RestaurantManager managerDb = myController.findManagerById(adminId);
-
-        if(managerDb == null){
-            return ResponseEntity.notFound().build();
-        }
-        BeanUtils.copyProperties(restaurantManager, managerDb, "adminId");
-        managerDb = adminRepo.save(managerDb);
-        return ResponseEntity.ok(managerDb);
-    }
-    //-----------------------------------------------------------
-    //These are for the Order model:
-    @Override
-    public List<Order> findAll() {
-        return myController.findAll();
+    @PostMapping("/insertRestaurantManager")
+    public RestaurantManager insert(@RequestBody RestaurantManager manager){
+        return controller.addManager(manager);
     }
 
-
-    @Override
-    public Order findOrderById(Long orderId) {
-        return myController.findOrderById(orderId);
+    @PutMapping("/updateManager/{id}")
+    public ResponseEntity<RestaurantManager> update(@PathVariable Long adminId, @RequestBody RestaurantManager manager){
+        return controller.updateManager(adminId, manager);
+    }
+    //----------------------------------------------------------
+    // Order:
+    @GetMapping("/getOrder")
+    public List<Order> OrderList(){
+        return controller.findAll();
     }
 
-    @Override
-    public Order addOrder(Order order) {
-        return orderRepo.save(order);
+    @GetMapping("/getOrder/{id}")
+    public Order getOrder(@PathVariable Long orderId){
+        return controller.findOrderById(orderId);
     }
 
-    /*@Override
-    public ResponseEntity<Order> updateOrder(Long orderId, Order order) {
+    @PostMapping("/insertOrder")
+    public Order insert(@RequestBody Order order){
+        return controller.addOrder(order);
+    }
 
-        Order orderDb = orderRepo.findOrderById(orderId);
-
-        // Use switch case to determine the status of the order
-
-        switch(orderDb.getOrderStatus()){
-            case RECEIVED:
-            orderDb.setOrderStatus(OrderStatus.PREPARING);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case PREPARING:
-            orderDb.setOrderStatus(OrderStatus.READYFORDELIVERY);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case DELIVERING:
-            orderDb.setOrderStatus(OrderStatus.DELIVERED);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case DELIVERED:
-            orderDb.setOrderStatus(OrderStatus.DELIVERED);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            default:
-            return ResponseEntity.notFound().build();
-        }
+    /*@PutMapping("/updateOrder/{id}")
+    public ResponseEntity<Order> update(@PathVariable Long orderId, @RequestBody Order order){
+        return controller.updateOrder(orderId, order);
     }*/
 
-    @Override
-    public ResponseEntity<Order> cancelOrder(Long orderId) {
-
-        Order orderDb = myController.findOrderById(orderId);
-
-        if(orderDb == null){
-            return ResponseEntity.notFound().build();
-        }
-        //orderDb.setOrderStatus(OrderStatus.CANCELED);
-        orderDb = orderRepo.save(orderDb);
-        return ResponseEntity.ok(orderDb);
+    @PutMapping("/cancelOrder/{id}")
+    public ResponseEntity<Order> cancel(@PathVariable Long orderId){
+        return controller.cancelOrder(orderId);
     }
-    //-----------------------------------------------------------
-    // These are for the Product model:
-
-    @Override
-    public List<Product> listProducts() {
-        return productRepo.findAll();
+    //----------------------------------------------------------
+    // Product:
+    @GetMapping("/getProduct")
+    public List<Product> ProductList(){
+        return controller.listProducts();
     }
 
-    @Override
-    public Product findProductById(Long productId) {
-        return myController.findProductById(productId);
+    @GetMapping("/getProduct/{id}")
+    public Product getProduct(@PathVariable Long productId){
+        return controller.findProductById(productId);
     }
 
-    @Override
-    public Product newProduct(Product product) {
-        return productRepo.save(product);
+    @PostMapping("/insertProduct")
+    public Product insertProduct(@RequestBody Product product){
+        return controller.newProduct(product);
     }
 
-    @Override
-    public ResponseEntity<Product> updateProduct(Long productId, Product product) {
-       
-        Product productDb = myController.findProductById(productId);
-
-        if(productDb == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        BeanUtils.copyProperties(product, productDb, "productId");
-        productDb = productRepo.save(productDb);
-        return ResponseEntity.ok(productDb);
+    @PutMapping("/updateProduct/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product){
+        return controller.updateProduct(productId, product);
     }
 
-    @Override
-    public ResponseEntity<Product> deleteProduct(Long productId) {
-       
-        Product product = myController.findProductById(productId);
-        
-        if(product == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        productRepo.delete(product);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/deleteProduct/{id}")
+    public ResponseEntity<Product> deleteProduct(@PathVariable Long productId){
+        return controller.deleteProduct(productId);
     }
-    //-----------------------------------------------------------
-    //These are for the Restaurant model:
-    @Override
-    public List<Restaurant> listRestaurants() {
-        return restaurantRepo.findAll();
+    //----------------------------------------------------------
+    // Restaurant:
+    @GetMapping("/getRestaurant")
+    public List<Restaurant> RestaurantList(){
+        return controller.listRestaurants();
     }
 
-    @Override
-    public Restaurant findRestaurantById(Long restaurantId) {
-       return myController.findRestaurantById(restaurantId);
+    @GetMapping("/getRestaurant/{id}")
+    public Restaurant getRestaurant(@PathVariable Long restaurantId){
+        return controller.findRestaurantById(restaurantId);
     }
 
-    @Override
-    public Restaurant findRestaurantByName(String restaurantName){
-        return myController.findRestaurantByName(restaurantName);
-    }
-    
-    @Override
-    public Restaurant insertNewRestaurant(Restaurant restaurant) {
-        return restaurantRepo.save(restaurant);
+    @GetMapping("/getRestaurant/{name}")
+    public Restaurant getRestaurant(@PathVariable String restaurantName){
+        return controller.findRestaurantByName(restaurantName);
     }
 
-    @Override
-    public ResponseEntity<Restaurant> updateRestaurant(Long restaurantId, Restaurant restaurant) {
-        
-        Restaurant restaurantDb = myController.findRestaurantById(restaurantId);
-
-        if(restaurantDb == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        BeanUtils.copyProperties(restaurant, restaurantDb, "restaurantId");
-        restaurantDb = restaurantRepo.save(restaurantDb);
-        return ResponseEntity.ok(restaurantDb);
+    @PostMapping("/insertRestaurant")
+    public Restaurant insertRestaurant(@RequestBody Restaurant restaurant){
+        return controller.insertNewRestaurant(restaurant);
     }
 
-    @Override
-    public ResponseEntity<Restaurant> deleteRestaurant(Long restaurantId) {
+    @PutMapping("/updateRestaurant/{id}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long restaurantId, @RequestBody Restaurant restaurant){
+        return controller.updateRestaurant(restaurantId, restaurant);
+    }
 
-        Restaurant restaurant = myController.findRestaurantById(restaurantId);
-
-        if(restaurant == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        restaurantRepo.delete(restaurant);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/deleteRestaurant/{id}")
+    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long restaurantId){
+        return controller.deleteRestaurant(restaurantId);
     }
 }
