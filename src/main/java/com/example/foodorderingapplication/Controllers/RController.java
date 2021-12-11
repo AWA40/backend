@@ -142,10 +142,10 @@ public class RController {
         return controller.findRestaurantById(id);
     }
 
-    @GetMapping("/getRestaurant/{name}")
+    /*@GetMapping("/getRestaurant/{name}")
     public Restaurant getRestaurantByName(@PathVariable String restaurantName){
         return controller.findRestaurantByName(restaurantName);
-    }
+    }*/
 
     @PostMapping("/insertRestaurant")
     public Restaurant insertRestaurant(@RequestBody Restaurant restaurant){
