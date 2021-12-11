@@ -143,7 +143,7 @@ public class RController {
     }
 
     @GetMapping("/getRestaurant/{name}")
-    public Restaurant getRestaurant(@PathVariable String restaurantName){
+    public Restaurant getRestaurantByName(@PathVariable String restaurantName){
         return controller.findRestaurantByName(restaurantName);
     }
 
