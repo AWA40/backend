@@ -11,11 +11,8 @@ import javax.persistence.Table;
 @Table(name = "item")
 public class Product {
     
-    @Column(name = "product_name")
+    @Column(name = "name")
     private String productName;
-    
-    @Column(name = "product_description")
-    private String productDescription;
 
     @Column(name = "price")
     private double price;
@@ -25,10 +22,9 @@ public class Product {
     @Column(name = "id")
     private Long productId;
 
-    public Product(String productName, String productDescription, double price, Long productId){
+    public Product(String productName, double price, Long productId){
 
         this.productName = productName;
-        this.productDescription = productDescription;
         this.price = price;
         this.productId = productId;
 
@@ -56,16 +52,6 @@ public class Product {
     public void setProductName(String productName)
     {
         this.productName = productName;
-    }
-
-    public String getProductDescription()
-    {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription)
-    {
-        this.productDescription = productDescription;
     }
 
     public double getPrice()
