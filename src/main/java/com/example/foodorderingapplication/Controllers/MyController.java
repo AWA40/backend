@@ -138,29 +138,13 @@ public class MyController implements Controller {
     public ResponseEntity<Order> updateOrder(Long orderId, Order order) {
 
         Order orderDb = orderRepo.findOrderById(orderId);
-
-        // Use switch case to determine the status of the order
-
-        switch(orderDb.getOrderStatus()){
-            case RECEIVED:
-            orderDb.setOrderStatus(OrderStatus.PREPARING);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case PREPARING:
-            orderDb.setOrderStatus(OrderStatus.READYFORDELIVERY);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case DELIVERING:
-            orderDb.setOrderStatus(OrderStatus.DELIVERED);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            case DELIVERED:
-            orderDb.setOrderStatus(OrderStatus.DELIVERED);
-            orderDb = orderRepo.save(orderDb);
-            return ResponseEntity.ok(orderDb);
-            default:
+        
+        if(orderDb == null){
             return ResponseEntity.notFound().build();
         }
+        BeanUtils.copyProperties(order, orderDb, "orderId");
+        orderDb = orderRepo.save(orderDb);
+        return ResponseEntity.ok(orderDb); 
     }*/
 
     @Override
